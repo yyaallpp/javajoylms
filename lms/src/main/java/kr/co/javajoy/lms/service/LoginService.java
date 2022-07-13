@@ -39,17 +39,20 @@ public class LoginService {
 		String resultId = loginMapper.loginMember(map); // 로그인
 		String memberActive = memberMapper.selectMemberActive(memberId); // active
 		String level = memberMapper.selectMemberLevel(memberId); // level 
+		int period = memberMapper.selectMemberPwPeriod(memberId);
 		
 		//디버깅
 		log.debug(CF.YHJ + "LoginService.login.resultId : " + resultId + CF.RESET);
 		log.debug(CF.YHJ + "LoginService.login.memberActive : " + memberActive + CF.RESET);
 		log.debug(CF.YHJ + "LoginService.login.level : " + level + CF.RESET);
+		log.debug(CF.YHJ + "LoginService.login.period : " + period + CF.RESET);
 		
 		// returnMap 정재
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("memberId", resultId);
 		resultMap.put("memberActive", memberActive);
 		resultMap.put("level", level);
+		resultMap.put("period", period);
 
 		return resultMap;
 	}
